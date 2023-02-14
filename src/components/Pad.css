@@ -1,0 +1,40 @@
+.pad-bank {
+    width: 332px;
+    height: 272px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.drum-pad {
+    background-color: gray;
+    margin-top: 10px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9);
+
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 80px;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding-top: 35px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Standard */
+}
+
+.drum-pad:active {
+    background-color: orange;
+    box-shadow: orange 0 3px;
+    /* margin-top: 13px; */
+}
