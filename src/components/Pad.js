@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./Pad.css";
 import sounds from "./sounds";
 
@@ -6,10 +6,24 @@ const Pad = (props) => {
     const audioRef = useRef(null);
 
     const playSound = (e) => {
-        audioRef.current.src = e.target.dataset.src;
-        audioRef.current.play();
+        const audioElement = audioRef.current;
+        audioElement.src = e.target.dataset.src;
+        audioElement.play();
         props.updateDisplay(e.target.dataset.name);
     };
+
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            const audioElement = audioRef.current;
+            const sound = sounds.find((s) => s.id === e.key.toUpperCase());
+            if (!sound) return;
+            audioElement.src = sound.src;
+            audioElement.play();
+            props.updateDisplay(sound.name);
+        };
+        window.addEventListener("keydown", handleKeyPress);
+        return () => window.removeEventListener("keydown", handleKeyPress);
+    }, []);
 
     return (
         <div className="pad-bank">
@@ -28,6 +42,5 @@ const Pad = (props) => {
         </div>
     );
 };
-
 
 export default Pad;
